@@ -17,7 +17,12 @@ class Weather:
             "units": "metric",
         }
     
+        self.data = self.get_weather()
+
     def get_weather(self):
+        '''
+        make a request for new weather data and return the result
+        '''
         response = requests.get(self.api_url, params=self.params)
 
         if response.status_code == 200:
@@ -25,9 +30,18 @@ class Weather:
             return weather_data
         else:
             print("error")
-    def print_weather(self):
-        print(self.get_weather())
     
+    def print_weather(self):
+        '''
+        print stored json weather data
+        '''
+        print(self.data)
+    
+    def refresh_weather(self):
+        '''
+        request for new weather data and store it
+        '''
+        self.data = self.get_weather()
 
 if __name__ == "__main__":
     w = Weather()
