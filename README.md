@@ -1,5 +1,5 @@
 # weather display app
-run on raspberry pi and connected display for easy access to weather information and datetime
+simple tkinter desktop app to run on raspberry pi with connected display for easy access to weather information and datetime
 
 ## before you run the app ...
 
@@ -8,3 +8,8 @@ run on raspberry pi and connected display for easy access to weather information
     ```
     api_key: "your key as a string, in double quotes"
     ```
+
+## sample display
+![app_screenshot](app_screenshot.png)
+
+
