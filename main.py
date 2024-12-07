@@ -10,7 +10,12 @@ def update_clock():
     root.after(1000, update_clock)
 
 def update_weather():
-    print("need to update weather data in all the labels")
+    w.refresh_weather()
+    label_temperature.config(text=f"Temp: {w.data['main']['temp']:7}\u00B0C")
+    wind_kmph = w.data['wind']['speed'] * 3.6
+    label_wind.config(text=f"Wind: {wind_kmph:.2f} km/h")
+    refreshed_at = datetime.datetime.fromtimestamp(w.data['dt'])
+    label_refreshed_at.config(text=f"Weather Data Timestamp: {refreshed_at}")
 
 w = weather.Weather()
 
@@ -22,24 +27,19 @@ big_font = ("Consolas", 55)
 
 # start at some size
 root.geometry("800x480")
-
 # full screen app
 # root.attributes('-fullscreen', True)
-
 # start maximized
 # root.state('zoomed')
-
 # use none of these to start compact
 
+# Title Block
 weather_app_image = Image.open("weather_logo.png")
 resized_weather_app_image = weather_app_image.resize((100, 100))
 tkweather_app_image = ImageTk.PhotoImage(resized_weather_app_image)
 
-# app content
 
-#
-label_header = tk.Label(root)
-label_header.pack(pady=1)
+# App Content
 
 # App Title Display
 #   TODO: make the images toggle light and dark mode for the app
@@ -47,7 +47,7 @@ title_bar = tk.Frame(root)
 # title_bar.configure(bg="teal") 
 # title_bar.rowconfigure(1, weight=1)
 title_bar.columnconfigure(1, weight=1)
-title_bar.pack(fill="x")
+title_bar.pack(fill="x", pady=(10, 10))
 label_image = tk.Label(title_bar, image=tkweather_app_image)
 # label_image.configure(bg="teal")
 label_image.grid(row=0, column=0)
@@ -59,8 +59,7 @@ label_image.grid(row=0, column=2)
 
 
 
-
-# Date, Day
+# Calendar and Clock Block
 '''
 %d: Returns the day of the month, from 1 to 31.
 %m: Returns the month of the year, from 1 to 12.
@@ -97,17 +96,16 @@ calendar_block.columnconfigure(0, weight=1)
 label_datetime = tk.Label(calendar_block, text=f"|  {day}  |  {date}  |", font=normal_font)
 label_datetime.configure(bg="lightgreen")
 label_datetime.grid(row=0, column=0, sticky="w")
-
 # label_clock = tk.Label(calendar_block, text="HH:MM:SS", font=normal_font)
 label_clock = tk.Label(calendar_block, text="HH:MM", font=normal_font)
 label_clock.configure(bg="lightgreen")
 label_clock.grid(row=0, column=1)
 
 
-# weather information block
+# Weather Information Block
 info_block = tk.Frame(root)
 info_block.pack(fill="both", padx=10, pady=10)
-label_temperature = tk.Label(info_block, text=f"Temp: {w.data['main']['temp']:8}\u00B0C", font=big_font)
+label_temperature = tk.Label(info_block, text=f"Temp: {w.data['main']['temp']:7}\u00B0C", font=big_font)
 # label_temperature.configure(bg="red")
 label_temperature.pack(fill="x")
 wind_kmph = w.data['wind']['speed'] * 3.6
@@ -116,16 +114,17 @@ label_wind = tk.Label(info_block, text=f"Wind: {wind_kmph:.2f} km/h", font=big_f
 label_wind.pack(fill="x")
 
 
-
-
-
 # label_dev = tk.Label(root, text=w.data, wraplength=600)
 # label_dev.pack()
 
 
-# app footer section
-label_footer = tk.Label(root)
-label_footer.pack(pady=1, side="bottom")
+# App Footer Section
+# label_footer = tk.Label(root)
+# label_footer.pack(pady=1, side="bottom")
+
+refreshed_at = datetime.datetime.fromtimestamp(w.data['dt'])
+label_refreshed_at = tk.Button(root, text=f"Weather Data Timestamp: {refreshed_at}", command=update_weather)
+label_refreshed_at.pack(side="bottom", fill="x")
 
 label_location = tk.Label(root, text=f"Location: {w.data['name']}", font=normal_font)
 label_location.configure(bg="lightgreen")
