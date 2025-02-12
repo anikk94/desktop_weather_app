@@ -13,3 +13,10 @@ simple tkinter desktop app to run on raspberry pi with connected display for eas
 ![app_screenshot](app_screenshot.png)
 
 
+
+
+change requests:
+1. use weather icons
+2. resize icons
+3. make a button to go full screen
+4. make a startup argument for full screen (arg parse?)
