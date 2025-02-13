@@ -46,3 +46,54 @@ class Weather:
 if __name__ == "__main__":
     w = Weather()
     w.print_weather()
+
+
+# Sample API JSON output
+# {
+#   "coord": {
+#     "lon": -77.1953,
+#     "lat": 39.1768
+#   },
+#   "weather": [
+#     {
+#       "id": 500,
+#       "main": "Rain",
+#       "description": "light rain",
+#       "icon": "10n"
+#     }
+#   ],
+#   "base": "stations",
+#   "main": {
+#     "temp": 0.92,
+#     "feels_like": -1.46,
+#     "temp_min": 0.29,
+#     "temp_max": 1.59,
+#     "pressure": 1022,
+#     "humidity": 94,
+#     "sea_level": 1022,
+#     "grnd_level": 1004
+#   },
+#   "visibility": 8047,
+#   "wind": {
+#     "speed": 2.06,
+#     "deg": 90
+#   },
+#   "rain": {
+#     "1h": 0.76
+#   },
+#   "clouds": {
+#     "all": 100
+#   },
+#   "dt": 1739411404,
+#   "sys": {
+#     "type": 1,
+#     "id": 4182,
+#     "country": "US",
+#     "sunrise": 1739361837,
+#     "sunset": 1739400135
+#   },
+#   "timezone": -18000,
+#   "id": 4362743,
+#   "name": "Montgomery Village",
+#   "cod": 200
+# }
